@@ -1,25 +1,32 @@
+let tarefas = []
+
 function adicionarTarefa() {
-      
-      const inputTarefa = document.getElementById("inputTarefa")
-      let tarefa = inputTarefa.value.trim()
+    const inputTarefa = document.getElementById("inputTarefa")
+    let tarefa = inputTarefa.value.trim()
 
-      const mensagemvar = document.getElementById("mensagem")
+    const mensagem = document.getElementById("mensagem")
 
-      if (tarefa == "") {
-            let mensagemErro = "Insira uma tarefa válida!"
-            mensagemvar.textContent = mensagemErro
-            
-      } else {
-            let mensagemSucesso = "Tarefa adicionada com sucesso!";
-            mensagemvar.textContent = mensagemSucesso
- 
-            const listaTarefas = document.getElementById("listaTarefas")
-            let novaTarefa = document.createElement("li")
-            novaTarefa.textContent = tarefa
-            listaTarefas.appendChild(novaTarefa)
-            
-      }
+    if (tarefa == "") {
+        let mensagemErro = "Digite uma tarefa válida para adicioná-la a sua lista!"
+        mensagem.textContent = mensagemErro
+    } else {
+        let mensagemSucesso = "Tarefa adicionada com sucesso!"
+        mensagem.textContent = mensagemSucesso
+        tarefas.push(tarefa)
+        renderizarTarefas()
+    }
 
-      inputTarefa.value = ""
+    inputTarefa.value = ""
+}
 
+function renderizarTarefas() {
+    const listaTarefas = document.getElementById("listaTarefas")
+    listaTarefas.innerHTML = ""
+
+    let i = 0 
+    for (i; i < tarefas.length; i++){
+        let novaTarefa = document.createElement("li")
+        novaTarefa.textContent = tarefas[i]
+        listaTarefas.appendChild(novaTarefa)
+    }
 }
